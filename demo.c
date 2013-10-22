@@ -49,6 +49,10 @@ typedef struct _node {
 } node;
 #pragma pack(pop)
 
+typedef struct _list_mgt_ {
+    struct list_head list;
+    int num;
+}lmgt;
 
 int node_entry(node *dnode, u16 index ) {
     if (NULL == dnode ) {
@@ -80,8 +84,9 @@ int main ( int argc, char *argv[] )
 {
     srand(time(NULL));
 
-    struct list_head list;
-    INIT_LIST_HEAD(&list);
+    lmgt *lm = (lmgt *) malloc(sizeof(lmgt));
+    //struct list_head list;
+    INIT_LIST_HEAD(&lm->list);
 
     node *n = NULL;
     char *tmp;
@@ -103,7 +108,7 @@ int main ( int argc, char *argv[] )
         tmp[sizeof(node) + j] = '\0';
         tmp += sizeof(node) + j + 1;
 
-        list_add_tail(&n->line, &list);
+        list_add_tail(&n->line, &lm->list);
 
         if (i == 3) {
             node *c = list_entry(n->line.prev, node, line);
@@ -112,10 +117,12 @@ int main ( int argc, char *argv[] )
     }
 
     // functional usage
-    print(&list);
+    print(&lm->list);
 
     free(buff); 
     buff = NULL;
+    free(lm);
+    lm=NULL;
 
     return EXIT_SUCCESS;
 }
