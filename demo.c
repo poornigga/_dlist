@@ -84,7 +84,7 @@ int main ( int argc, char *argv[] )
 {
     srand(time(NULL));
 
-    lmgt *lm = (lmgt *) malloc(sizeof(lmgt));
+    lmgt *lm = malloc(sizeof(lmgt));
     //struct list_head list;
     INIT_LIST_HEAD(&lm->list);
 
@@ -92,7 +92,7 @@ int main ( int argc, char *argv[] )
     char *tmp;
 
     int total_size = (sizeof(node) + DATA_MAX + 1) * NODE_NUM;
-    char *buff = (char *)malloc(total_size);
+    char *buff = malloc(total_size);
     if (NULL == buff) return -1;
 
     memset(buff, '\0', total_size);
