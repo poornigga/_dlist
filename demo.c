@@ -45,7 +45,7 @@ typedef struct _node {
     u16 dx;
     struct list_head line;
     int  len;
-    char data[0];
+    char data[0]; // data-bucket.
 } node;
 #pragma pack(pop)
 
