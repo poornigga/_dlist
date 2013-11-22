@@ -1,4 +1,4 @@
 _dlist
 ======
 
-klist usage.
+klist usage demo.

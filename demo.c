@@ -52,9 +52,10 @@ typedef struct _node {
 typedef struct _list_mgt_ {
     struct list_head list;
     int num;
-}lmgt;
+} lmgt;
 
-int node_entry(node *dnode, u16 index ) {
+
+int set_node_entry(node *dnode, u16 index ) {
     if (NULL == dnode ) {
         return -1;
     }
@@ -89,10 +90,10 @@ int main ( int argc, char *argv[] )
     INIT_LIST_HEAD(&lm->list);
 
     node *n = NULL;
-    char *tmp;
+    char *tmp, *buff;
 
     int total_size = (sizeof(node) + DATA_MAX + 1) * NODE_NUM;
-    char *buff = malloc(total_size);
+    buff = malloc(total_size);
     if (NULL == buff) return -1;
 
     memset(buff, '\0', total_size);
@@ -100,7 +101,7 @@ int main ( int argc, char *argv[] )
 
     for (int i=0, j=0; i<NODE_NUM; j=0,++i) {
         n = (node *)tmp;
-        if ( (j = node_entry(n, i)) == -1 ) {
+        if ( (j = set_node_entry(n, i)) == -1 ) {
             printf("node entry error : idx [%d]\n", i);
             break;
         }
